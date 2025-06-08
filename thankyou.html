@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e7fdf4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .receipt {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .receipt h2 {
+      color: #00b894;
+    }
+
+    .receipt p {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .receipt .contact {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .receipt a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .receipt a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="receipt">
+    <h2>✅ Payment Successful</h2>
+    <p><strong>Name:</strong> <span id="rName"></span></p>
+    <p><strong>Email:</strong> <span id="rEmail"></span></p>
+    <p><strong>Amount Paid:</strong> ₦<span id="rAmount"></span></p>
+    <p><strong>Transaction Ref:</strong> <span id="rRef"></span></p>
+    <div class="contact">
+      Please contact us on WhatsApp:<br>
+      <a href="https://wa.me/2348139926868" target="_blank">+2348139926868</a><br>
+      Message: <em>“I've proceeded the payment sir.”</em>
+    </div>
+  </div>
+
+  <script>
+    const receipt = JSON.parse(localStorage.getItem("receipt"));
+    if (receipt) {
+      document.getElementById("rName").innerText = receipt.name;
+      document.getElementById("rEmail").innerText = receipt.email;
+      document.getElementById("rAmount").innerText = receipt.amount;
+      document.getElementById("rRef").innerText = receipt.ref;
+    } else {
+      document.body.innerHTML = "<h3 style='text-align:center;'>No receipt found.</h3>";
+    }
+  </script>
+</body>
+</html>
